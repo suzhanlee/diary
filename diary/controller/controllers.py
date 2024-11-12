@@ -52,12 +52,20 @@ def update_diary(diary_id: int, db: Session = Depends(get_db)):
         raise HTTPException(400, "다이어리가 존재하지 않습니다.")
 
     diary.update_diary()
-  
+
     db.commit()
     db.refresh(diary)
 
     return {"diary_id": diary.id, "time": diary.time, "plan": diary.plan}
 
 
+@router.delete("diary/{diary_id}")
+def delete_diary(diary_id: int, db: Session = Depends(get_db)):
+    diary: Diary = db.query(Diary).filter(Diary.id == diary_id).first()
 
-    
+    if diary is None:
+        raise HTTPException(400, "다이어리가 존재하지 않습니다.")
+
+    db.delete(diary)
+    db.commit()
+    return {"message": "다이어리가 정상적으로 삭제되었습니다."}
