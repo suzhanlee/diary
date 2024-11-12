@@ -43,3 +43,13 @@ def get_diarites(user_id: int, db: Session = Depends(get_db)):
         for diary_id, time, plan in diaries
     ]
 
+
+@router.put("diary/{diary_id}")
+def update_diary(diary_id: int, db: Session = Depends(get_db)):
+    diary: Diary = db.query(Diary).filter(Diary.id == diary_id).first()
+
+    if Diary is None:
+        raise HTTPException(400, "다이어리가 존재하지 않습니다.")
+
+    return {"diary_id": diary.id, "time": diary.time, "plan": diary.plan}
+
