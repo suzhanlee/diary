@@ -51,5 +51,13 @@ def update_diary(diary_id: int, db: Session = Depends(get_db)):
     if Diary is None:
         raise HTTPException(400, "다이어리가 존재하지 않습니다.")
 
+    diary.update_diary()
+  
+    db.commit()
+    db.refresh(diary)
+
     return {"diary_id": diary.id, "time": diary.time, "plan": diary.plan}
 
+
+
+    
