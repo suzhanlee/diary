@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from database import Base, engine
-from diary.controller.controllers import router
+from DiaryController import router
 
 app = FastAPI()
 Base.metadata.create_all(engine)
