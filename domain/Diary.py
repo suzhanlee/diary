@@ -8,7 +8,7 @@ class Diary(Base):
         id = Column(Integer, primary_key=True, index=True)
         user_id = Column(Integer, ForeignKey('members.id'))
         time = Column(DateTime)
-        plan = Column(String)
+        plan = Column(String(1000))
         created_at = Column(DateTime)
         updated_at = Column(DateTime)
 

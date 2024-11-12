@@ -1,5 +1,7 @@
 {
         "python.analysis.extraPaths": [
-                "./diary/repository"
+                "./diary/repository",
+                "./diary/controller",
+                "./diary/dto"
         ]
 }
